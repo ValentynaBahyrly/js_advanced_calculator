@@ -4,39 +4,37 @@
  * @return {object}
  */
 function makeCalculator() {
-  const calculator = {};
+  return {
+    result: 0,
 
-  calculator.result = 0;
+    operate(callback, n) {
+      callback.call(this, n);
 
-  calculator.operate = function (cb, n) {
-    cb.call(this, n);
+      return this;
+    },
 
-    return this;
+    add(n) {
+      this.result += n;
+    },
+
+    subtract(n) {
+      this.result -= n;
+    },
+
+    multiply(n) {
+      this.result *= n;
+    },
+
+    divide(n) {
+      this.result /= n;
+    },
+
+    reset() {
+      this.result = 0;
+
+      return this;
+    },
   };
-
-  calculator.add = function (n) {
-    this.result += n;
-  };
-
-  calculator.subtract = function (n) {
-    this.result -= n;
-  };
-
-  calculator.multiply = function (n) {
-    this.result *= n;
-  };
-
-  calculator.divide = function (n) {
-    this.result /= n;
-  };
-
-  calculator.reset = function () {
-    this.result = 0;
-
-    return this;
-  };
-
-  return calculator;
 }
 
 module.exports = makeCalculator;
